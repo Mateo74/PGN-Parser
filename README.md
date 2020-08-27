@@ -1,7 +1,7 @@
 # PGN-Parser
 
 Parser de archivos PGN. Dado un archivo con varias partidas de ajedrez, decide si el archivo es sintácticamente válido (superficialmente) y si lo es
-devuelve cuál fue la jugada inicial más común del blanco y cuál fue el máximo nivel de anidamiento de los comentarios que contienen alguna partida.
+devuelve cuál fue la jugada inicial más común del blanco y cuál fue el máximo nivel de anidamiento de los comentarios que contienen alguna jugada.
 
 _______________________________________
 
