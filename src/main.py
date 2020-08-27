@@ -9,8 +9,12 @@ import sys
 
 lexer = lex.lex(module=lexer_rules)
 
-name = input("Path al archivo: ")
-with open(name, 'r') as input_pgn:
+if (len(sys.argv) != 2):
+	print("Uso: python main.py path/al/archivo/PGN")
+	sys.exit(1)
+
+input_file = sys.argv[1]
+with open(input_file, 'r') as input_pgn:
 	data = input_pgn.read()
 lexer.input(data)
 
