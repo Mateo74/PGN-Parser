@@ -11,6 +11,7 @@ _______________________________________
 
 Por ejemplo:
 > python main.py ../entradas/validas/entrada1.txt
+
 resulta en
 <pre>
 La jugada inicial mas popular fue e4, y la maxima profundidad 2
