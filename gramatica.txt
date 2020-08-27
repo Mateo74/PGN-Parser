@@ -1,0 +1,109 @@
+G = <
+No Terminales: {PGN, Partida, Tags, Secuencia, Turno, Turno2, PosibleComentario, Comentario, Contenido, Palabra},
+Terminales: {RESULTADO, TAG, NUMERO, JUGADA, ABREPAREN, CIERRAPAREN, ABRELLAVE, CIERRALLAVE, TEXTO},
+Simbolo distinguido: PGN,
+Producciones: P >
+
+con P =
+
+PGN -> Partida PGN | Partida
+Partida -> Tags Secuencia RESULTADO
+Tags -> TAG Tags | lambda
+Secuencia -> Turno Secuencia | Turno
+Turno -> NUMERO Turno2
+Turno2 -> JUGADA PosibleComentario Turno2 | lambda
+PosibleComentario -> Comentario | lambda
+Comentario -> ABREPAREN Contenido CIERRAPAREN | ABRELLAVE Contenido CIERRALLAVE
+Contenido -> Palabra Contenido | Comentario Contenido | lambda
+Palabra -> TEXTO | JUGADA | NUMERO | TAG | RESULTADO
+
+
+Palabra -> TEXTO | NUMERO | TAG | RESULTADO {Palabra.val = false}
+Palabra -> JUGADA                           {Palabra.val = true}
+
+Contenido.val = tupla cuyo primer elemento es bool jugada y segundo elemento es int profundidad
+Contenido -> lambda {Contenido.val = {false, 0}}
+Contenido1 -> Palabra Contenido2
+{
+	if Contenido2.val[0]:
+		Contenido1.val = {true, Contenido2.val[1] }
+	else if Palabra.val:
+		Contenido1.val = {true, 1}
+	else:
+		Contenido1.val = {false, 0}
+}
+Contenido1 -> Comentario Contenido2
+{
+	Contenido1.val = {false, 0}
+	if Comentario.val[0]:
+		Contenido1.val = {true, Comentario1.val[1] + 1 }
+	if Contenido2.val[0]:
+		Contenido1.val[0] = true
+		Contenido1.val[1] = max(Contenido1.val[1], Contenido2.val[1])
+}
+
+Comentario.val = tupla cuyo primer elemento es bool jugada y segundo elemento es int profundidad
+Comentario -> EMPIEZACOMENT Contenido TERMINACOMENT
+{
+	Comentario.val = Contenido.val
+	CONDITION(EMPIEZACOMENT.val == TERMINACOMENT.val)
+}
+
+PosibleComentario.val = igual a los anteriores
+PosibleComentario -> lambda
+{
+	PosibleComentario.val = {false, 0}
+}
+PosibleComentario -> Comentario
+{
+	PosibleComentario.val = Comentario.val
+}
+
+Turno2.val = tupla cuyo primer elemento es int jugada_inicial y segundo elemento int profundidad
+Turno2 -> lambda
+{
+	Turno2.val = {'_', 0}
+}
+Turno2 -> JUGADA PosibleComentario Turno2
+{
+	Turno2.val[0] = JUGADA.val
+	Turno2.val[1] = max(PosibleComentario.val[1], Turno2.val[1])
+}
+
+Turno.val = igual que Turno2.val
+Turno -> NUMERO Turno2
+{
+	Turno.val = Turno2.val
+}
+
+Secuencia.val = igual que Turno.val
+Secuencia -> Turno
+{
+	Secuencia.val = Turno.val
+}
+
+Secuencia1 -> Turno Secuencia2
+{
+	Secuencia.val[0] = Turno.val[0]
+	Secuencia.val[1] = max(Turno.val[1], Secuencia2.val[1])
+}
+
+Partida.val = igual que Secuencia.val
+Partida -> Tags Secuencia RESULTADO
+{
+	Partida.val = Secuencia.val
+}
+
+PGN.val = tupla cuyo primer elemento es un diccionario que tiene para cada jugada, la cantidad de apariciones y cuyo segundo elemento es int profundidad
+
+PGN -> Partida
+{
+	PGN.val[1] = Partida.val[1]
+	PGN.val[0] = {Partida.val[0] : 1}
+}
+
+PGN1 -> Partida PGN2 {
+	PGN.val[1] = max(Partida.val[1], PGN2.val[1])
+	PGN2.val[0] = PGN2.val[0]
+	PGN2.val[0][Partida.val[0]] += 1
+}

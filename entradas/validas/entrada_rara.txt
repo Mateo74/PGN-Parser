@@ -1,0 +1,15 @@
+[Tag1 "Vamo Prim Floyd"]
+[Tag2 "eoé salchicha con puré"]
+
+
+
+7. Ph8 {Acá un comentario con profundidad 1 porque te digo f3 } 24248892. a1 a2 a3 a4 a1 {Comentario sí señor (Ya me quedé sin ideas {O-O-O# era buena {o no?}          } acá sigue el comentario de las no ideas) Y terminó Bh4 } 3. O-O-O O-O O-O-O {El blanco ofrece tablas y el negro abadona porque el enroque fue muy fuerte} 1-0
+
+[Partida2 "Sí, partida 2"]
+[Blanco "Stockfish"]
+[Negro "Magnus Carlsen"]
+2. Nh3 {A Stockfish se le patinó el mouse, es obvio que quiso jugar 1.h3} g5 2. Nf4 (Hola señor Thompson) 2...g4 (Creo que le habla a usted) 3. Ne6 (La dama negra está atrapada) 3... f5 4. Nxc7+ (Un doblete de caballo, el blanco va a ganar la torre en a8 {y hubiera sido casi mate de no ser por 3...f5}) 4... Kf7 5.Nxa8 Qxe1 {Magnus prefirió terminar con el asunto y comer el rey blanco} 0-1
+
+[PartidaFinal "Sip, la última"]
+
+1. h4 {Un comentario inútil} 1... h5 2. a4 a5 {{{{{{ Un comentario profundo con una jugada ilegal, pero jugada al fin: axb8#!? }}}}}} 3. g3 {Un último comentario inútil, pero con una jugada: O-O-O+} 1/2-1/2
