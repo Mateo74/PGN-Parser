@@ -10,7 +10,7 @@ _______________________________________
 > python main.py Path/Al/Archivo/PGN
 
 Por ejemplo:
-> python main.py ../entradas/validas/entrada_valida.txt
+> python main.py ../entradas/validas/entrada1.txt
 resulta en
 <pre>
 La jugada inicial mas popular fue e4, y la maxima profundidad 2
